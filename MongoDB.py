@@ -10,7 +10,7 @@ class Database:
         posts = db.posts                                     # Создание коллекции
 
 
-        #posts.delete_one({"first_name": ''}) Удаление по фильтру
+        #posts.delete_one({"first_name": " "})               Удаление по фильтру
 
         #print(posts.find_one()) Вывод одной записи
 

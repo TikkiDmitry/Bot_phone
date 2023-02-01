@@ -3,7 +3,7 @@ from telethon import TelegramClient, events
 from data import *
 import MongoDB
 
-bot = TelegramClient('bot', API_ID, API_HASH).start(bot_token=API_TOKEN)
+bot = TelegramClient('bot', API_ID, API_HASH).start(bot_token=API_TOKEN_TG)
 
 database = MongoDB.Database()
 
