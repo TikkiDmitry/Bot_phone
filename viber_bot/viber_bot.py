@@ -5,6 +5,7 @@ from viberbot.api.messages.text_message import TextMessage
 from data import API_TOKEN_VIBER
 from viberbot.api.viber_requests import ViberMessageRequest
 import MongoDB
+from datetime import datetime
 
 app = Flask(__name__)
 viber = Api(BotConfiguration(
@@ -49,7 +50,7 @@ def incoming():
         ])
         name = message.contact.name
         phone = message.contact.phone_number
-        database.posts.insert_one({"first_name": name, "phone_number": phone})  # Запись в БД
+        database.posts.insert_one({"from": "Viber", "first_name": name, "phone_number": phone, "date/time": str(datetime.now())})  # Запись в БД
         # print(message.contact)
         # print(name, phone)
 
@@ -59,3 +60,8 @@ def incoming():
 if __name__ == "__main__":
     context = ('server.crt', 'server.key')
     app.run(port="8000")
+
+
+# Перейти в командной строке в папку проекта(путь до нужных файлов)
+# и ввести: curl -# -i -g -H "X-Viber-Auth-Token:ТОКЕН" -d @viber.json -X POST
+# ngrok http 8000 - команда для запуска порт(число) должен совпадать с параметром порта в коде
