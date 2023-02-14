@@ -8,6 +8,8 @@ from datetime import datetime
 import xlsxwriter
 import MongoDB
 
+## TZ мне
+
 client = TelegramClient('client', API_ID, API_HASH).start(bot_token=API_TOKEN_TG_DATA)
 database = MongoDB.Database()
 
