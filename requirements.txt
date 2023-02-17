@@ -1,0 +1,8 @@
+telethon
+python_telegram_bot
+selenium
+whatsapp-web
+flask
+viberbot
+fastapi
+python_dotenv

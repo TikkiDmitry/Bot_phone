@@ -1,12 +1,11 @@
 import telethon.tl.types
 from telethon import TelegramClient, events
 from data import *
-import MongoDB
+import database
 from datetime import datetime
 bot = TelegramClient('bot', API_ID, API_HASH).start(bot_token=API_TOKEN_TG)
 
-database = MongoDB.Database()
-
+database = database.Database()
 
 @bot.on(events.NewMessage(pattern='/start'))
 async def start(event):
@@ -15,7 +14,6 @@ async def start(event):
                                                            'поделиться номером телефона')]
     ])
     await event.respond("Здравствуйте", buttons=k)
-
 
 @bot.on(events.NewMessage())
 async def contact(message):
@@ -30,10 +28,8 @@ async def contact(message):
         database.posts.insert_one({"from": "Telegram", "first_name": name, "phone_number": phone, "date/time": str(datetime.now())})  # Запись в БД
         #print(message.media)
 
-
 def main():
     bot.run_until_disconnected()
-
 
 if __name__ == '__main__':
     main()
